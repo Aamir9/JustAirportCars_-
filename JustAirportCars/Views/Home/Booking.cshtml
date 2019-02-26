@@ -1,0 +1,432 @@
+﻿
+@{
+    ViewBag.Title = "Booking";
+
+    List<SelectListItem> cabType = new List<SelectListItem>();
+    cabType.Add(new SelectListItem {
+
+        Text="Cab Type",
+        Value=""
+    });
+
+    cabType.Add(new SelectListItem
+    {
+        Text = "Saloon",
+        Value = "Saloon"
+
+    });
+
+    cabType.Add(new SelectListItem
+    {
+        Text = "Estate",
+        Value = "Estate"
+
+    });
+    cabType.Add(new SelectListItem
+    {
+        Text = "MPV",
+        Value = "MPV"
+
+    });
+
+
+
+    List<SelectListItem> Passengers = new List<SelectListItem>();
+    Passengers.Add(new SelectListItem
+    {
+
+        Text = "Passengers",
+        Value = ""
+    });
+
+    Passengers.Add(new SelectListItem
+    {
+        Text = "1",
+        Value = "1"
+
+    });
+
+    Passengers.Add(new SelectListItem
+    {
+        Text = "2",
+        Value = "2"
+
+    });
+    Passengers.Add(new SelectListItem
+    {
+        Text = "3",
+        Value = "3"
+
+    });
+
+    Passengers.Add(new SelectListItem
+    {
+        Text = "4",
+        Value = "4"
+
+    });
+
+    Passengers.Add(new SelectListItem
+    {
+        Text = "5",
+        Value = "5"
+
+    });
+    Passengers.Add(new SelectListItem
+    {
+        Text = "6",
+        Value = "6"
+
+    });
+    Passengers.Add(new SelectListItem
+    {
+        Text = "7",
+        Value = "7"
+
+    });
+
+    Passengers.Add(new SelectListItem
+    {
+        Text = "8",
+        Value = "8"
+
+    });
+
+
+
+
+
+
+
+    List<SelectListItem> direction = new List<SelectListItem>();
+    direction.Add(new SelectListItem
+    {
+
+        Text = "selcet Direction",
+        Value = ""
+    });
+
+    direction.Add(new SelectListItem
+    {
+        Text = "One way",
+        Value = "One Way"
+
+    });
+
+    direction.Add(new SelectListItem
+    {
+        Text = "Return ",
+        Value = "Returrn"
+
+    });
+    
+
+
+}
+
+<div class="banner" id="home">
+
+
+    <!-- header -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light top-header">
+            <button class="navbar-toggler mx-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto" id="myul">
+                    <li class="nav-item ">
+                        <a class="nav-link ml-lg-0" href="/Home/Index">
+                            Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/About">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="/Home/Prices">Airport Prices</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/Services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/Home/Booking">Booking</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/Contact">Contact</a>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+    </header>
+    <!-- //header -->
+</div>
+<!--//banner-->
+<!-- Booking -->
+<section class="bookingform py-5">
+    <div class="container py-md-5 py-3">
+        <h1 class="heading text-capitalize text-center">Request a Quote</h1>
+        <h5 class="heading mb-5 text-center">just airport car</h5>
+        <div class="row">
+            <div class="col-lg-6 book-appointment p-sm-5 py-5 px-4" style="">
+                <h2>Personal Details</h2>
+                <div class="book-agileinfo-form">
+                    <form action="/Home/Booking" method="post" enctype="multipart/form-data" role="form">
+
+
+                        <div class="row main-agile-sectns">
+                            <div class="col-md-6 agileits-btm-spc form-text1">
+                                <input type="text" name="name" placeholder="Full Name" required="">
+                            </div>
+                            <div class="col-md-6 agileits-btm-spc form-text2">
+                                <input type="text" name="Phone" placeholder="Phone number" required="">
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-md-6 agileits-btm-spc form-text1">
+                                <input type="email" name="email" placeholder="Email" required="">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="agileits-btm-spc">
+
+                                    @Html.DropDownList("cabType", new SelectList(cabType, "Value", "Text"), new { @class = "frm-field required sect", @id = "cab" })
+
+                                    @*<select  name="cabType" id="cab" onchange="change_country(this.value)" class="frm-field required sect">
+                                    <option value="">Select Cab</option>
+                                    <option value="">Mini</option>
+                                    <option value="">Sedan</option>
+                                    <option value="">Elite</option>
+                                </select>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <h2 class="sub-head-w3ls">Booking Details</h2>
+                        <div class="row main-agile-sectns">
+                            <div class="col-md-6 agileits-btm-spc form-text1">
+                                <input id="datepicker" name="date" type="text" placeholder="Pick-up Date" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'mm/dd/yyyy';}"
+                                       required="">
+                            </div>
+                            <div class="col-md-6 agileits-btm-spc form-text2">
+                                <input type="text" id="timepicker" name="Time" class="timepicker form-control" placeholder="Pick-up Time" value="">
+                            </div>
+                        </div>
+                        <div class="row main-agile-sectns">
+                            <div class="col-md-6 agileits-btm-spc form-text1">
+                                <input type="text" name="PickUp" placeholder="Pick-up Location" required="">
+                            </div>
+                            <div class="col-md-6 agileits-btm-spc form-text2">
+                                <input type="text" name="DropOff" placeholder="Drop-off Location" required="">
+                            </div>
+                        </div>
+
+                        <div class="main-agile-sectns">
+                            <div class="agileits-btm-spc">
+                                @Html.DropDownList("passengers", new SelectList(Passengers, "Value", "Text"), new { @class = "frm-field required sect", @id = "passengers" })
+
+                                @*<select id="passengers" name="passengers" onchange="change_country(this.value)" class="frm-field required sect">
+                                <option value="">No.of Passengers</option>
+                                <option value="">1</option>
+                                <option value="">2</option>
+                                <option value="">3</option>
+                                <option value="">4</option>
+                                <option value="">5</option>
+                            </select>*@
+                            </div>
+                            <div class="agileits-btm-spc form-text2">
+
+                                @Html.DropDownList("direction", new SelectList(direction, "Value", "Text"), new { @class = "frm-field required sect", @id = "passengers" })
+
+                                @*<select id="direction" name="direction" onchange="change_country(this.value)" class="frm-field required">
+                                <option value="">Direction</option>
+                                <option value="">One Way</option>
+                                <option value="">Return</option>
+                            </select>*@
+                            </div>
+                        </div>
+                        <input type="submit" value="Request a Quote" onclick="alertfun()">
+                        <input type="reset" value="Reset">
+                    </form>
+                </div>
+            </div>
+            @*<div class="col-lg-6 mt-md-5">
+            <img src="~/images/saloon.png" height="50" alt="" class="img-fluid"/>
+            <img src="~/images/estate.png" height="50" alt="" class="img-fluid" />
+
+        </div>*@
+            <div class="col-lg-2 col-6">
+
+            </div>
+            <div class="col-lg-3 col-6">
+                <img src="~/images/saloon.png" alt="" class="img-fluid" />
+                <h4 class="text-center">Saloon   
+                
+                    ( 4<i class="fas fa-male p-1" aria-hidden="true"></i> +
+                        2 <i class="fas fa-suitcase p-1" aria-hidden="true"></i>)
+                   
+                
+                    </h4> 
+                   
+                    
+               
+                <img src="~/images/estate.png" alt="" class="img-fluid" />
+                <h4 class="text-center">Estate
+                
+                
+                    ( 4<i class="fas fa-male p-1" aria-hidden="true"></i> +
+                    3 <i class="fas fa-suitcase p-1" aria-hidden="true"></i>) 
+                
+               
+                
+                    </h4>
+               
+
+                <img src="~/images/mpv.png" alt="" class="img-fluid" />
+                <h4 class="text-center">
+                    MPV
+
+
+
+                    ( 6<i class="fas fa-male p-1" aria-hidden="true"></i> +
+                    3 <i class="fas fa-suitcase p-1" aria-hidden="true"></i>)
+
+
+
+
+                </h4>
+              
+            </div>
+        </div>
+    </div>
+</section>
+<!-- //Booking -->
+
+
+
+@section scripts{
+
+    <script>
+
+        function alertfun() {
+            alertify.alert('Thank you for request a quote. We will get back  right now ');
+        }
+
+      
+    </script>
+    <script type="application/x-javascript">
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+
+
+    <!-- js -->
+
+    <script type="text/javascript" src="~/js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="~/js/bootstrap.js"></script> <!-- Necessary-JavaScript-File-For-Bootstrap -->
+    <!-- //js -->
+    <!-- Time -->
+    <script type="text/javascript" src="~/js/wickedpicker.js"></script>
+    <script type="text/javascript">
+        $('.timepicker').wickedpicker({
+            twentyFour: false
+        });
+    </script>
+    <!--// Time -->
+    <!-- Calendar -->
+    <script src="~/js/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#datepicker,#datepicker1,#datepicker2,#datepicker3").datepicker();
+        });
+    </script>
+    <!-- //Calendar -->
+    <!-- carousel -->
+    <script src="~/js/owl.carousel.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.owl-carousel').owlCarousel({
+                loop: true,
+                margin: 10,
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: true
+                    },
+                    600: {
+                        items: 1,
+                        nav: false
+                    },
+                    900: {
+                        items: 2,
+                        nav: false
+                    },
+                    1000: {
+                        items: 3,
+                        nav: true,
+                        loop: false,
+                        margin: 20
+                    }
+                }
+            })
+        })
+    </script>
+    <!-- //carousel -->
+    <!--slider-->
+    <script src="~/js/responsiveslides.min.js"></script>
+    <script>
+        $(function () {
+            // Slideshow 1
+            $("#slider1").responsiveSlides({
+                auto: true,
+                pager: true,
+                nav: true,
+                speed: 500,
+                namespace: "centered-btns"
+            });
+        });
+    </script>
+    <!--//slider-->
+    <!-- start-smoth-scrolling -->
+    <script src="~/js/SmoothScroll.min.js"></script>
+    <script type="text/javascript" src="~/js/move-top.js"></script>
+    <script type="text/javascript" src="~/js/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+            });
+        });
+    </script>
+    <!-- here stars scrolling icon -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /*
+                var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear'
+                };
+            */
+
+            $().UItoTop({ easingType: 'easeOutQuart' });
+
+        });
+    </script>
+    <!-- //here ends scrolling icon -->
+    <!-- start-smoth-scrolling -->
+    <!-- //js-scripts -->
+
+}
